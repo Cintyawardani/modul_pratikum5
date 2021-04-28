@@ -15,11 +15,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+  var _questionIndex = 0;
 
-  void answerQuestion() {
-    questionIndex = questionIndex + 1;
-    print(questionIndex);
+  void _answerQuestion() {
+    setState(() {
+      _questionIndex = _questionIndex + 1;
+    });
+    print(_questionIndex);
   }
 
   @override
@@ -31,26 +33,24 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Aplikasi Quiz'),
+          title: Text('Aplikasi quiz'),
         ),
         body: Column(
           children: [
             Text(
-              questions[questionIndex],
+              questions[_questionIndex],
             ),
             ElevatedButton(
               child: Text('jawab 1'),
-              onPressed: answerQuestion,
+              onPressed: _answerQuestion,
             ),
             ElevatedButton(
               child: Text('jawab 2'),
-              onPressed: () => print(
-                  'jawab 2 dipilih!'), // ini akan muncul pada debug console di visual code
+              onPressed: () => print('jawab 2 dipilih!'),
             ),
             ElevatedButton(
               child: Text('jawab 3'),
               onPressed: () {
-                // ...
                 print('jawab 3 dipilih');
               },
             ),
